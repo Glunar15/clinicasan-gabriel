@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos - Clínica San Gabriel</title>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-white"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z""")/>></svg></div>
+                <div class="brand-text"><h2>Clínica</h2><p>San Gabriel</p></div>
+            </div>
+            <div class="user-profile">
+                <div class="avatar" style="background: #3b82f6;">DM</div>
+                <div class="user-info"><p class="user-name">Dr. Carlos Mendoza</p><span class="badge">Administrador</span></div>
+            </div>
+            <nav class="menu">
+                <p class="menu-label">MENU PRINCIPAL</p>
+                <a href="admin.html" class="menu-item"><span class="icon">📊</span> Dashboard</a>
+                <a href="pacientes.html" class="menu-item"><span class="icon">👥</span> Pacientes</a>
+                <a href="citas.html" class="menu-item"><span class="icon">📅</span> Citas Médicas</a>
+                <a href="medicos.html" class="menu-item active"><span class="icon">🩺</span> Médicos</a>
+                <a href="reportes.html" class="menu-item"><span class="icon">📈</span> Reportes</a>
+            </nav>
+            <button class="logout-btn" onclick="location.href='index.html'">Cerrar Sesión</button>
+        </aside>
+
+        
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1>Médicos</h1>
+                    <p style="color: #64748b; font-size: 13px;">Control de médicos y disponibilidad</p>
+                </div>
+                <div class="top-date">📅 Sábado, 7 de Marzo de 2026</div>
+            </header>
+
+            
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-data"><h3>6</h3><p>Total Médicos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-data"><h3 style="color: #10b981;">5</h3><p>Activos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-data"><h3>1</h3><p>Inactivos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-data"><h3 style="color: #2563eb;">6</h3><p>Especialidades</p></div>
+                </div>
+            </section>
+
+           
+            <section class="table-actions">
+                <div class="search-filters-group">
+                    <select class="filter-input"><option>Todas las especialidades</option></select>
+                    <select class="filter-input"><option>Todos los estados</option></select>
+                </div>
+                <button class="btn-main-action" onclick="openMedicoModal()">+ Agregar Médico</button>
+            </section>
+
+            
+            <div class="doctors-grid" id="doctorsGrid">
+       
+            </div>
+        </main>
+    </div>
+
+    
+<div id="medicoModal" class="modal-overlay">
+    <div class="modal-card edit-card-size">
+        <div class="modal-header">
+            <h3>Agregar Médico</h3>
+            <button type="button" class="close-btn" onclick="closeMedicoModal()">&times;</button>
+        </div>
+        <form id="medicoForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombres <span>*</span></label>
+                    <input type="text" id="med-names" class="form-input" placeholder="Roberto" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span>*</span></label>
+                    <input type="text" id="med-surnames" class="form-input" placeholder="Sánchez" required>
+                </div>
+                <div class="form-group">
+                    <label>Estado del Médico</label>
+                     <select id="med-status" class="form-input">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Cédula <span>*</span></label>
+                    <input type="text" id="med-cedula" class="form-input" placeholder="1715234567" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono <span>*</span></label>
+                    <input type="text" id="med-phone" class="form-input" placeholder="0981234567" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Consultorio</label>
+                <input type="text" id="med-office" class="form-input" placeholder="Consultorio 1">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="med-email" class="form-input" placeholder="medico@sangabriel.com">
+            </div>
+
+            <div class="form-group">
+                <label>Especialidad <span>*</span></label>
+                <select id="med-specialty" class="form-input" required>
+                    <option value="Medicina General">Medicina General</option>
+                    <option value="Traumatología">Traumatología</option>
+                    <option value="Pediatría">Pediatría</option>
+                    <option value="Cardiología">Cardiología</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Días de Atención</label>
+                <div class="days-row-selector" style="display: flex; gap: 8px; margin-top: 5px;">
+                    
+                    <label class="day-chip"><input type="checkbox" value="Lun"> Lun</label>
+                    <label class="day-chip"><input type="checkbox" value="Mar"> Mar</label>
+                    <label class="day-chip"><input type="checkbox" value="Mié"> Mié</label>
+                    <label class="day-chip"><input type="checkbox" value="Jue"> Jue</label>
+                    <label class="day-chip"><input type="checkbox" value="Vie"> Vie</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Hora Inicio</label>
+                    <input type="time" id="med-start" class="form-input" value="08:00">
+                </div>
+                <div class="form-group">
+                    <label>Hora Fin</label>
+                    <input type="time" id="med-end" class="form-input" value="17:00">
+                </div>
+            </div>
+
+            <div class="modal-footer-btns">
+                <button type="button" class="btn-cancel-modal" onclick="closeMedicoModal()">Cancelar</button>
+                <button type="submit" class="btn-save-modal">Agregar Médico</button>
+            </div>
+        </form>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

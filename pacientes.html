@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes - Clínica San Gabriel</title>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-white">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z""")/>></svg>
+                </div>
+                <div class="brand-text">
+                    <h2>Clínica</h2>
+                    <p>San Gabriel</p>
+                </div>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" style="background: #3b82f6;">DM</div>
+                <div class="user-info">
+                    <p class="user-name">Dr. Carlos Mendoza</p>
+                    <span class="badge">Administrador</span>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">MENU PRINCIPAL</p>
+                <a href="admin.html" class="menu-item"><span class="icon">📊</span> Dashboard</a>
+                <a href="pacientes.html" class="menu-item active"><span class="icon">👥</span> Pacientes</a>
+                <a href="citas.html" class="menu-item"><span class="icon">📅</span> Citas Médicas</a>
+                <a href="medicos.html" class="menu-item"><span class="icon">🩺</span> Médicos</a>
+                <a href="reportes.html" class="menu-item"><span class="icon">📈</span> Reportes</a>
+            </nav>
+
+            <button class="logout-btn" onclick="location.href='index.html'">Cerrar Sesión</button>
+        </aside>
+
+        
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1>Pacientes</h1>
+                    <p style="color: #64748b; font-size: 13px;">Gestión de registros médicos</p>
+                </div>
+                <div class="top-date">📅 Sábado, 7 de Marzo de 2026</div>
+            </header>
+
+            <section class="table-actions">
+                <div class="search-box">
+                    <input type="text" id="patientSearch" placeholder="Buscar por nombre, cédula o email...">
+                </div>
+                <button class="btn-main-action" onclick="openRegisterModal()">+ Registrar Paciente</button>
+
+
+            </section>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>PACIENTE</th>
+                            <th>CÉDULA</th>
+                            <th>EDAD/GÉNERO</th>
+                            <th>GRUPO SANG.</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientsTableBody">
+                        <tr id="row-1">
+                            <td>
+                                <div class="patient-cell">
+                                    <div class="mini-avatar blue">JG</div>
+                                    <div class="p-info">
+                                        <strong id="name-1">Juan García</strong>
+                                        <small id="email-1">juan.garcia@email.com</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td id="id-1">1712345678</td>
+                            <td id="age-gender-1">40 años ♂ M</td>
+                            <td id="blood-1"><span class="blood-badge pos">O+</span></td>
+                            <td class="actions-cell">
+                                <button class="action-btn view" onclick="openViewModal(1)" title="Ver">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z""")/>><circle cx="12" cy="12" r="3""")/>></svg>
+                                </button>
+                                <button class="action-btn edit" onclick="openEditModal(1)" title="Editar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7""")/>><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z""")/>></svg>
+                                </button>
+                                <button class="action-btn delete" onclick="openDeleteModal(1)" title="Eliminar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6""")/>><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2""")/>></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    
+<div id="registerModal" class="modal-overlay">
+    <div class="modal-card edit-card-size">
+        <div class="modal-header">
+            <h3>Registrar Nuevo Paciente</h3>
+            <button class="close-btn" onclick="closeRegisterModal()">&times;</button>
+        </div>
+        <form id="registerPatientForm" class="modal-body">
+           
+            <div class="form-group">
+                <label>Cédula / ID <span>*</span></label>
+                <input type="text" id="reg-cedula" class="form-input" required>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombres <span>*</span></label>
+                    <input type="text" id="reg-names" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span>*</span></label>
+                    <input type="text" id="reg-surnames" class="form-input" required>
+                </div>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento <span>*</span></label>
+                    <input type="date" id="reg-birth" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Género <span>*</span></label>
+                    <select id="reg-gender" class="form-input">
+                        <option value="♂ M">Masculino</option>
+                        <option value="♀ F">Femenino</option>
+                    </select>
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <label>Email <span>*</span></label>
+                <input type="email" id="reg-email" class="form-input" required>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Grupo Sanguíneo</label>
+                <select id="reg-blood" class="form-input">
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="A+">A+</option>
+                    <option value="B+">B+</option>
+                </select>
+            </div>
+
+            <div class="modal-footer-btns">
+                <button type="button" class="btn-cancel-modal" onclick="closeRegisterModal()">Cancelar</button>
+                <button class="btn-main-action" onclick="openRegisterModal()">+ Registrar Paciente</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="viewModal" class="modal-overlay">
+    <div class="modal-card view-card-size">
+        <div class="modal-header">
+            <h3>Ficha del Paciente</h3>
+            <button class="close-btn" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div class="patient-header">
+            <div id="v-avatar" class="avatar-square blue-light">--</div>
+            <div class="patient-main-info">
+                <h2 id="v-full-name">Cargando...</h2>
+                <p id="v-sub-info">CI: -- - Registrado: --</p>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item"><label>Nombre completo</label><p id="v-nombre">--</p></div>
+            <div class="info-item"><label>Edad</label><p id="v-edad">--</p></div>
+            <div class="info-item"><label>Género</label><p id="v-genero">--</p></div>
+            <div class="info-item"><label>Grupo Sanguíneo</label><p id="v-sangre">--</p></div>
+            <div class="info-item"><label>Teléfono</label><p id="v-telefono">--</p></div>
+            <div class="info-item"><label>Email</label><p id="v-email">--</p></div>
+            <div class="info-item full-width"><label>Dirección</label><p id="v-direccion">--</p></div>
+        </div>
+
+        <div class="alert-box orange">
+            <strong>⚠️ ALERGIAS</strong>
+            <p id="v-alergias">Ninguna registrada</p>
+        </div>
+        <div class="alert-box blue">
+            <strong>📋 HISTORIAL MÉDICO</strong>
+            <p id="v-historial">Sin antecedentes</p>
+        </div>
+
+        <div class="modal-footer-btns">
+            <button class="btn-cancel-modal" onclick="closeViewModal()">Cerrar Ficha</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="editModal" class="modal-overlay">
+    <div class="modal-card edit-card-size">
+        <div class="modal-header">
+            <h3>Editar Paciente</h3>
+            <button class="close-btn" onclick="closeEditModal()">&times;</button>
+        </div>
+        <form id="editPatientForm" class="modal-body">
+            <input type="hidden" id="edit-id-ref">
+
+            
+            <div class="form-group">
+                <label>Cédula / ID <span>*</span></label>
+                <input type="text" id="in-cedula" class="form-input" required>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombres <span>*</span></label>
+                    <input type="text" id="in-names" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span>*</span></label>
+                    <input type="text" id="in-surnames" class="form-input" required>
+                </div>
+            </div>
+
+           
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento <span>*</span></label>
+                    <input type="date" id="in-birth" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Género <span>*</span></label>
+                    <select id="in-gender" class="form-input">
+                        <option value="♂ M">Masculino</option>
+                        <option value="♀ F">Femenino</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Teléfono <span>*</span></label>
+                    <input type="text" id="in-phone" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Grupo Sanguíneo</label>
+                    <select id="in-blood" class="form-input">
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="in-email" class="form-input">
+            </div>
+
+           
+            <div class="form-group">
+                <label>Dirección</label>
+                <input type="text" id="in-address" class="form-input">
+            </div>
+
+            
+            <div class="form-group">
+                <label>Alergias conocidas</label>
+                <input type="text" id="in-allergies" class="form-input">
+            </div>
+
+            
+            <div class="form-group">
+                <label>Historial Médico</label>
+                <textarea id="in-history" class="form-input text-area"></textarea>
+            </div>
+
+            <div class="modal-footer-btns">
+                <button type="button" class="btn-cancel-modal" onclick="closeEditModal()">Cancelar</button>
+                <button type="submit" class="btn-save-modal">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+   
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 400px; text-align: center;">
+            <h3 style="margin-bottom: 20px;">¿Eliminar paciente?</h3>
+            <input type="hidden" id="delete-id-ref">
+            <div class="modal-footer-btns">
+                <button class="btn-cancel-modal" onclick="closeDeleteModal()">No</button>
+                <button class="btn-save-modal" style="background: #ef4444;" onclick="confirmDelete()">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Esta función se encarga de enviar los datos al servidor Node.js
+       async function guardarNuevoPaciente(event) {
+    event.preventDefault();
+
+    // Capturamos los datos usando los IDs EXACTOS de tu HTML
+    const inputCedula = document.getElementById('reg-cedula');
+    const inputNombres = document.getElementById('reg-names');
+    const inputApellidos = document.getElementById('reg-surnames');
+    const inputEmail = document.getElementById('reg-email');
+    const inputSangre = document.getElementById('reg-blood');
+
+    // Esta validación evita que el código se rompa si falta algún ID
+    if (!inputCedula || !inputNombres || !inputApellidos || !inputEmail) {
+        console.error("Error: No se encontró uno de los campos en el HTML.");
+        return;
+    }
+
+    const nuevoPaciente = {
+        cedula: inputCedula.value,
+        nombres: inputNombres.value,
+        apellidos: inputApellidos.value,
+        email: inputEmail.value,
+        grupo_sanguineo: inputSangre ? inputSangre.value : "O+"
+    };
+
+    try {
+        const response = await fetch('http://localhost:3000/api/pacientes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(nuevoPaciente)
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.success) {
+            alert("¡Paciente registrado con éxito!");
+            
+            // Cerramos el modal (asegúrate de que esta función exista en tu script.js)
+            if (typeof closeRegisterModal === 'function') closeRegisterModal();
+            
+            // Recargamos la lista para ver al nuevo paciente
+            if (typeof cargarPacientes === 'function') cargarPacientes();
+            
+            // Limpiamos el formulario
+            event.target.reset();
+        } else {
+            alert("Error: " + (resultado.error || "No se pudo guardar"));
+        }
+    } catch (error) {
+        console.error("Error de conexión:", error);
+        alert("No hay conexión con el servidor. Verifica que Node.js esté corriendo.");
+    }
+}
+
+        // Ejecutar cuando el HTML termine de cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            // Buscamos el formulario que está dentro del modal de registro
+            const regForm = document.querySelector('#registerModal form');
+            if (regForm) {
+                regForm.onsubmit = guardarNuevoPaciente;
+                console.log("Conexión del formulario de pacientes lista.");
+            }
+        });
+    </script>
+</body>
+</html>
+</body>
+
+</html>

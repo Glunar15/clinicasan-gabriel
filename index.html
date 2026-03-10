@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Clínica San Gabriel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-wrapper">
+       
+        <div class="left-side">
+            <div class="brand-header">
+                <div class="logo-box">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z""")/>></svg>
+                </div>
+                <h1>Clínica <br> <span>San Gabriel</span></h1>
+            </div>
+            <h2>Sistema Automatizado de <br> Gestión Médica</h2>
+            <p>Plataforma integral para la gestión de citas, registro de pacientes y reportes clínicos.</p>
+<ul class="check-list">
+    <li>
+        <div class="icon-box icon-purple">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z""")/>></svg>
+        </div>
+        Registro Digital de Pacientes
+    </li>
+    <li>
+        <div class="icon-box icon-blue">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z""")/>></svg>
+        </div>
+        Gestión Automatizada de Citas
+    </li>
+    <li>
+        <div class="icon-box icon-yellow">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z""")/>></svg>
+        </div>
+        Control de Disponibilidad Médica
+    </li>
+    <li>
+        <div class="icon-box icon-green">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z""")/>></svg>
+        </div>
+        Reportes Diarios y Mensuales
+    </li>
+</ul>
+        </div>
+
+        
+        <div class="right-side">
+            <div class="login-card">
+                <h3>Iniciar Sesión</h3>
+                <p class="card-subtitle">Ingrese sus credenciales para acceder al sistema</p>
+                <form id="loginForm">
+    <div class="field">
+        <label>Usuario</label>
+        <div class="input-box">
+            
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z""")/>></svg>
+            <input type="text" id="userInput" placeholder="Ingrese su usuario" required>
+        </div>
+    </div>
+    <div class="field">
+        <label>Contraseña</label>
+        <div class="input-box">
+            
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z""")/>></svg>
+            <input type="password" id="passInput" placeholder="Ingrese su contraseña" required>
+            
+            <div class="eye-btn" onclick="togglePass()">
+                <svg id="eyeIcon" viewBox="0 0 24 24" fill="currentColor" width="22">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z""")/>>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn-main">Ingresar al Sistema</button>
+</form>
+<div class="demo-section">
+    <p class="demo-title">Accesos de demostración:</p>
+    <div class="demo-buttons">
+       
+
+<button type="button" class="btn-demo admin" onclick="loginDemo('admin')">
+    <svg viewBox="0 0 24 24" fill="#f6ad55"><path d="M5 16h14v2H5zm14-8l-3.5 2L12 5l-3.5 5L5 8l1.5 7h11z"/>></svg>
+    Administrador
+</button>
+
+        
+
+<button type="button" class="btn-demo staff" onclick="loginDemo('staff')">
+    <svg viewBox="0 0 24 24" fill="#9f7aea"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H7v-2h7v2zm3-4H7v-2h10v2z""")/>></svg>
+    Recepcionista
+</button>
+    </div>
+</div>
+            </div>
+            <p class="copy-text">© 2026 Clínica San Gabriel - v1.0</p>
+        </div>
+    </div>
+
+    <script>
+        function togglePass() {
+            const input = document.getElementById('passInput');
+            const eyeIcon = document.getElementById('eyeIcon').querySelector('path');
+            
+           
+            const openPath = "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z";
+            const closedPath = "M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.82l2.92 2.92c1.51-1.26 2.7-2.89 3.44-4.74-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z";
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeIcon.setAttribute('d', closedPath);
+            } else {
+                input.type = 'password';
+                eyeIcon.setAttribute('d', openPath);
+            }
+        }
+    </script>
+
+       <script src="script.js"></script>
+</body>
+
+</html>
+<script>
+        async function manejarLogin(event) {
+            event.preventDefault();
+            
+            // Obtenemos los valores de los inputs
+            const user = document.querySelector('input[type="text"]').value;
+            const pass = document.getElementById('passInput').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Redirección según el rol que definimos en la base de datos
+                    if (data.user.rol === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'dashboard.html';
+                    }
+                } else {
+                    alert("Usuario o contraseña incorrectos");
+                }
+            } catch (error) {
+                console.error("Error de conexión:", error);
+                alert("No se pudo conectar con el servidor. ¿Olvidaste iniciar node server.js?");
+            }
+        }
+
+        // Esta línea conecta el formulario con la función de arriba
+        // Asegúrate de que tu etiqueta <form> exista en el HTML
+        const loginForm = document.querySelector('form');
+        if (loginForm) {
+            loginForm.onsubmit = manejarLogin;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Clínica San Gabriel</title>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+     
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-white">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z""")/>></svg>
+                </div>
+                <div class="brand-text">
+                    <h2>Clínica</h2>
+                    <p>San Gabriel</p>
+                </div>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" style="background: #9f7aea;">ML</div>
+                <div class="user-info">
+                    <p class="user-name">María López</p>
+                    <span class="badge" style="background: #9f7aea;">Recepcionista</span>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">MENÚ PRINCIPAL</p>
+                <a href="dashboard.html" class="menu-item active"><span class="icon">📊</span> Dashboard</a>
+                <a href="pacientes-recep.html" class="menu-item"><span class="icon">👥</span> Pacientes</a>
+                <a href="citas-recep.html" class="menu-item"><span class="icon">📅</span> Citas Médicas</a>
+            </nav>
+
+            <button class="logout-btn" onclick="location.href='index.html'">Cerrar Sesión</button>
+        </aside>
+
+       
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1>Dashboard</h1>
+                    <p style="color: #64748b; font-size: 13px;">Panel Operativo de Recepción</p>
+                </div>
+                <div class="top-date">📅 --</div>
+            </header>
+
+           
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <h2>Bienvenido, María López 👋</h2>
+                    <p>El sistema está sincronizado con la base de datos central.</p>
+                </div>
+                <div class="banner-actions">
+                    <button class="btn-action" onclick="location.href='citas-recep.html'">+ Nueva Cita</button>
+                    <button class="btn-action secondary" onclick="location.href='pacientes-recep.html'">+ Nuevo Paciente</button>
+                </div>
+            </section>
+
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="icon-circle blue">👥</div>
+                    <div class="stat-data"><h3 id="dash-total-pacientes">0</h3><p>Total Pacientes</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-circle green">📅</div>
+                    <div class="stat-data"><h3 id="dash-citas-hoy">0</h3><p>Citas Hoy</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-circle purple">🩺</div>
+                    <div class="stat-data"><h3 id="dash-medicos-activos">0</h3><p>Médicos Activos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-circle orange">📈</div>
+                    <div class="stat-data"><h3 id="dash-ingresos">$0</h3><p>Ingresos Hoy</p></div>
+                </div>
+            </div>
+
+          
+            <div class="dashboard-footer-content">
+                
+                <div class="footer-card summary-section">
+                    <h3>Resumen de Hoy</h3>
+                    <div class="summary-list" id="resumen-hoy-dinamico">
+                        
+                        <div class="summary-row">
+                            <div class="row-info"><span class="dot blue"></span> Consultas</div>
+                            <div class="progress-container"><div class="bar blue" style="width: 0%;"></div></div>
+                            <span class="val">0%</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="footer-card appointments-section">
+                    <div class="card-header">
+                        <h3>Próximas Citas</h3>
+                        <a href="citas-recep.html" class="view-all">Ver todas →</a>
+                    </div>
+                    
+                    <div class="appointment-scroll" id="dash-pacientes-reales">
+                        <p style="text-align:center; padding:20px; color:#94a3b8; font-size:13px;">Cargando citas...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

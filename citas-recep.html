@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas Médicas - Recepción - Clínica San Gabriel</title>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-white">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z""")/>></svg>
+                </div>
+                <div class="brand-text">
+                    <h2>Clínica</h2>
+                    <p>San Gabriel</p>
+                </div>
+            </div>
+
+            <div class="user-profile">
+                <div class="avatar" style="background: #9f7aea;">ML</div>
+                <div class="user-info">
+                    <p class="user-name">María López</p>
+                    <span class="badge" style="background: #9f7aea;">Recepcionista</span>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <p class="menu-label">MENÚ PRINCIPAL</p>
+                <a href="dashboard.html" class="menu-item"><span class="icon">📊</span> Dashboard</a>
+                <a href="pacientes-recep.html" class="menu-item"><span class="icon">👥</span> Pacientes</a>
+                <a href="citas-recep.html" class="menu-item active"><span class="icon">📅</span> Citas Médicas</a>
+            </nav>
+
+            <button class="logout-btn" onclick="location.href='index.html'">Cerrar Sesión</button>
+        </aside>
+
+       
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1>Agenda de Citas</h1>
+                    <p style="color: #64748b; font-size: 13px;">Gestión de turnos y disponibilidades</p>
+                </div>
+                <div class="top-date">📅 --</div>
+            </header>
+
+            
+            <section class="stats-grid-citas">
+                <div class="stat-card-citas">
+                    <div class="stat-info"><h3>0</h3><p>Programadas</p></div>
+                    <span class="status-pill blue">Programada</span>
+                </div>
+                <div class="stat-card-citas">
+                    <div class="stat-info"><h3>0</h3><p>En Curso</p></div>
+                    <span class="status-pill orange">En Curso</span>
+                </div>
+                <div class="stat-card-citas">
+                    <div class="stat-info"><h3>0</h3><p>Completadas</p></div>
+                    <span class="status-pill green">Completada</span>
+                </div>
+                <div class="stat-card-citas">
+                    <div class="stat-info"><h3>0</h3><p>Canceladas</p></div>
+                    <span class="status-pill red">Cancelada</span>
+                </div>
+            </section>
+
+           
+            <section class="table-actions">
+                <div class="search-filters-group">
+                    <input type="text" id="apptSearch" class="filter-input" placeholder="Buscar paciente o médico..." style="width: 250px;">
+                    <select id="statusFilter" class="filter-input">
+                        <option value="">Todos los estados</option>
+                        <option value="Programada">Programada</option>
+                        <option value="En Curso">En Curso</option>
+                        <option value="Completada">Completada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+                <button class="btn-main-action" onclick="openApptModal()">+ Programar Cita</button>
+            </section>
+
+            
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>PACIENTE</th>
+                            <th>MÉDICO / ESPECIALIDAD</th>
+                            <th>FECHA Y HORA</th>
+                            <th>TIPO</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    
+    <div id="appointmentModal" class="modal-overlay">
+        <div class="modal-card edit-card-size">
+            <div class="modal-header"><h3>Nueva Cita</h3><button class="close-btn" onclick="closeApptModal()">&times;</button></div>
+            <form id="appointmentForm">
+                <div class="form-group"><label>Paciente *</label><select id="appt-patient" class="form-input" required></select></div>
+                <div class="form-group"><label>Médico *</label><select id="appt-doctor" class="form-input" required></select></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Fecha *</label><input type="date" id="appt-date" class="form-input" required></div>
+                    <div class="form-group"><label>Hora *</label><select id="appt-time" class="form-input" required>
+                        <option value="08:00">08:00 AM</option><option value="09:30">09:30 AM</option>
+                        <option value="11:00">11:00 AM</option><option value="15:00">03:00 PM</option>
+                    </select></div>
+                </div>
+                <div class="form-group"><label>Tipo</label><select id="appt-type" class="form-input"><option value="Consulta">Consulta</option><option value="Control">Control</option></select></div>
+                <div class="form-group"><label>Notas</label><textarea id="appt-notes" class="form-input text-area"></textarea></div>
+                <div class="modal-footer-btns">
+                    <button type="button" class="btn-cancel-modal" onclick="closeApptModal()">Cancelar</button>
+                    <button type="submit" class="btn-save-modal">Agendar Cita</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-card edit-card-size">
+            <div class="modal-header">
+                <h3>Editar Paciente</h3>
+                <button type="button" class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editPatientForm"> 
+                <input type="hidden" id="edit-id-ref">
+                
+                <div class="form-group">
+                    <label>Cédula / ID</label>
+                    <input type="text" id="in-cedula" class="form-input" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" id="in-names" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" id="in-surnames" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" id="in-birth" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Género</label>
+                        <select id="in-gender" class="form-input">
+                            <option value="♂ M">Masculino</option>
+                            <option value="♀ F">Femenino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Grupo Sanguíneo</label>
+                    <select id="in-blood" class="form-input">
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                    </select>
+                </div>
+                <div class="modal-footer-btns">
+                    <button type="button" class="btn-cancel-modal" onclick="closeEditModal()">Cancelar</button>
+                    <button type="submit" class="btn-save-modal">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="deleteApptModal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 400px; text-align: center;">
+            <h3>¿Eliminar esta cita?</h3>
+            <p style="color: #64748b; font-size: 13px; margin: 15px 0;">Esta acción no se puede deshacer.</p>
+            <input type="hidden" id="delete-appt-id-ref">
+            <div class="modal-footer-btns">
+                <button class="btn-cancel-modal" onclick="closeDeleteApptModal()">No</button>
+                <button class="btn-save-modal" style="background: #ef4444;" onclick="confirmarEliminarCita()">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
